@@ -1,7 +1,7 @@
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
-const megamen = require('../roster/roster-model.js');
+const Megamen = require('../roster/roster-model.js');
 
 const server = express();
 
@@ -15,10 +15,16 @@ server.get('/', async (req, res) => {
 });
 
 server.get('/megamen', async (req, res) => {
-    const rows = await megamen.getAll();
+    const rows = await Megamen.getAll();
 
     res.status(200).json(rows);
 });
+
+server.delete('/megamen/:id', async (req, res) => {
+    const rows = await Megamen.remove(req.params.id);
+
+    res.status(200).json(rows);
+})
 
 
 module.exports = server;

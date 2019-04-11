@@ -15,9 +15,9 @@ async function add(body) {
 }
 
 async function remove(id) {
-    return db('megamen').where('megamen.id', id).del()
+    await db('megamen').where('megamen.id', id).del()
 
-    
+    return db('megamen')
 }
 
 function getAll() {
